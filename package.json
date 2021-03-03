@@ -1,0 +1,23 @@
+{
+  "name": "slinkshot_backend",
+  "version": "1.0.0",
+  "description": "Backend of SlinkShot Clone Application",
+  "main": "App.js",
+  "scripts": {
+    "test": "node App.js",
+    "start": "node App.js"
+  },
+  "author": "Mohammed M Bakr",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-secret": "^1.1.1",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.10.0"
+  }
+}
