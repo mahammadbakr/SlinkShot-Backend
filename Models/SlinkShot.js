@@ -11,6 +11,10 @@ const SlinkShotSchema= new mongoose.Schema({
         type:objId,
         ref: 'User'
     },
+    userDetails:{
+        type:objId,
+        ref: 'UserDetails'
+    },
     description:{
         type:String,
         trim:true

@@ -45,7 +45,7 @@ exports.getAllSkins= async (req, res) => {
   exports.getAllSlinkShots = async (req, res) => {
   try {
     const slinkShot  =SlinkShot 
-    .find({}).populate("User")
+    .find({}).populate("user").populate("userDetails")
     .then(slinkShots => {
     res.status(200).json({
       status: 200,
@@ -75,6 +75,7 @@ exports.newSkin = async (req, res) => {
     const skin = await Skin.create({
       name: req.body.name,
       image: req.body.image,
+      description: req.body.description,
       price: req.body.price,
       createdDate:req.body.createdDate
     });
@@ -98,6 +99,7 @@ exports.newSlinkShot = async (req, res) => {
     const slinkShot = await SlinkShot.create({
       name: req.body.name,
       user:req.body.user,
+      userDetails:req.body.userDetails,
       description: req.body.description,
       videoUrl: req.body.videoUrl,
       like: req.body.like,
@@ -127,6 +129,7 @@ exports.newUserDetails = async (req, res) => {
       name: req.body.name,
       image: req.body.image,
       bio: req.body.bio,
+      wallet: req.body.wallet,
       channel:req.body.channel,
       followers:req.body.followers,
       slinkshots:req.body.slinkshots,
@@ -151,7 +154,7 @@ exports.getUserDetailsById= async (req, res) => {
     const nullStatus = "Couldn't Find UserDetails";
     UserDetails.findById(
       req.body._id
-    ).exec().then(userDetails=>{
+    ).populate("user").populate("skin").exec().then(userDetails=>{
       if(userDetails==null){
         res.status(500).json({
           status: 500,
@@ -169,35 +172,7 @@ exports.getUserDetailsById= async (req, res) => {
       error,
     });
   }
-//   try {
-//     const userDetails  =UserDetails 
-//     .findById(
-//       req.body._id
-//     ).populate("User")
-//     .populate("SlinkShot")
-//     .then(userDetails => {
-//     res.status(200).json({
-//       status: 200,
-//       userDetails,
-//     });
-//     });
-
-//   if(userDetails==null){
-//     res.status(500).json({
-//       status: 500,
-//       data: userDetails
-//   });
-//   }
-
-//  } catch (error) {
-//    res.status(400).json({
-//      status: 400,
-//      error,
-//    });
-//  }
-  };
-
-
+};
 
 
 exports.newFollowerForUserDetails = async (req, res) => {

@@ -10,14 +10,19 @@ const UserDetailsSchema= new mongoose.Schema({
         type:String,
         trim:true
     },
-    image:{
-        type:String,
-        trim:true
+    skin:{
+        type:objId,
+        ref: 'Slink'
     },
     
     bio:{
         type:String,
         trim:true
+    },
+    wallet:{
+        type:Number,
+        trim:true,
+        default:500
     },
     channel:{
         type:String,

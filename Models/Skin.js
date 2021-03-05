@@ -7,6 +7,11 @@ const SkinSchema= new mongoose.Schema({
         required: true,
         trim:true
     },
+    description:{
+        type:String,
+        required: true,
+        trim:true
+    },
     image:{
         type:String,
         trim:true

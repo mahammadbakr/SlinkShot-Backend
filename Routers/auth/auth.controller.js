@@ -3,7 +3,7 @@ const User = require('../../Models/User')
 
 
 exports.register = (req, res) => {
-    const { username, password ,isDoctor, patient,doctor,favorite } = req.body
+    const { username, password  } = req.body
     let newUser = null
 
     // create a new user if does not exist
@@ -11,7 +11,7 @@ exports.register = (req, res) => {
         if(user) {
             throw new Error('username exists')
         } else {
-            newUser=User.create(username, password,isDoctor,patient,doctor,favorite );
+            newUser=User.create(username, password );
             return newUser
         }
     }
@@ -56,9 +56,7 @@ exports.login = (req, res) => {
                         {
                             _id: user._id,
                             username: user.username,
-                            // patient: user.patient,
-                            // doctor: user.doctor,
-                            // favorite: user.favorite
+            
                         }, 
                         secret, 
                         {
